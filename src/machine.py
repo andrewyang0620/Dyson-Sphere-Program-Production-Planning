@@ -11,7 +11,7 @@ class Machine:
 
 # the instance of machine
 # raw material mining
-miner = Machine("矿机", multiplier=1.0)
+miner = Machine("矿脉", multiplier=1.0)
 well = Machine("抽水机", multiplier=1.0)
 oil_well = Machine("原油站", multiplier=1.0)
 electron_receiver = Machine("射线接收站", multiplier=1.0)
@@ -42,7 +42,7 @@ research_station_ultra = Machine("黑雾研究站", multiplier=3.0)
 
 # the dictionary of machine
 MACHINES = {
-    "矿机": miner,
+    "矿脉": miner,
     "初级熔炉": stove_low,
     "高级熔炉": stove_high,
     "黑雾熔炉": stove_ultra,

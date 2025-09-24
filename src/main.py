@@ -11,6 +11,6 @@ if __name__ == "__main__":
     print("=== Production Demand Tree ===")
     print_tree(target_item)
 
-    print("\n=== Final Demands ===")
-    for name, item in ITEMS.items():
-        print(item)
+    # print("\n=== Final Demands ===")
+    # for name, item in ITEMS.items():
+    #     print(item)

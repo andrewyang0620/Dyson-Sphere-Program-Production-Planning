@@ -9,7 +9,9 @@ class Item:
         self.actual_rate = self.base_rate * MACHINES[self.machine_type].multiplier
         self.recipe = recipe or {}
         self.demand = 0
-        self.machine_num = self.demand/self.actual_rate
+    
+    def machine_num(self):
+        return self.demand / self.actual_rate if self.actual_rate > 0 else 0
         
     def reset(self):
         self.demand = 0
@@ -20,8 +22,15 @@ class Item:
 # define items
 
 # raw materials
-iron_ore = Item("铁矿", base_rate=60, machine_type="矿机")
-cupper_ore = Item("铜矿", base_rate=60, machine_type="矿机")
+iron_ore = Item("铁矿", base_rate=60, machine_type="矿脉")
+copper_ore = Item("铜矿", base_rate=60, machine_type="矿脉")
+stone_ore = Item("石矿", base_rate=60, machine_type="矿脉")
+coal_ore = Item("煤矿", base_rate=60, machine_type="矿脉")
+sil_ore = Item("硅矿", base_rate=60, machine_type="矿脉")
+tit_ore = Item ("钛矿", base_rate=60, machine_type="矿脉")
+water = Item("水", base_rate=50, machine_type="抽水机")
+oil_ore = Item("原油", base_rate=5.0*60, machine_type="原油站") # 真实的rate取决于矿脉
+h = Item("氢", base_rate=30, machine_type="射线接收站")
 
 # basic materials
 iron = Item("铁块", base_rate=60, machine_type="高级熔炉", recipe={"铁矿": 1})
@@ -29,21 +38,19 @@ mag_circle = Item("磁铁", base_rate=40, machine_type="高级熔炉", recipe={"
 cupper = Item("铜块", base_rate=60, machine_type="高级熔炉", recipe={"铜矿": 1})
 
 # basic products
-wire_circle = Item("线圈", base_rate=120, machine_type="黑雾制造台", recipe={"铜块": 1, "磁铁": 2})
-
-
+wire_circle = Item("线圈", base_rate=120, machine_type="mk2制造台", recipe={"铜块": 1, "磁铁": 2})
 
 # dictionary for items
 ITEMS = {
     "铁矿": iron_ore,
-    "铜矿": cupper_ore,
-    # "石矿": stone_ore,
-    # "煤矿": coal_ore,
-    # "硅矿": sil_ore,
-    # "钛矿": tit_ore,
-    # "水": water,
-    # "石油": oil_ore,
-    # "氢": h,
+    "铜矿": copper_ore,
+    "石矿": stone_ore,
+    "煤矿": coal_ore,
+    "硅矿": sil_ore,
+    "钛矿": tit_ore,
+    "水": water,
+    "原油": oil_ore,
+    "氢": h,
     # "重氢": hh,
     # "反物质": h-h,
     # "核心素": hgold,

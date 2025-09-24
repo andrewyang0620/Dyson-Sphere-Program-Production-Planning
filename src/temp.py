@@ -1,4 +1,4 @@
-# this is a temporary file for testing purposes
+# this is a temporary file for designing purposes, not part of the main program
 eff0 = 0.75
 eff1 = 1.0
 eff2 = 1.5
