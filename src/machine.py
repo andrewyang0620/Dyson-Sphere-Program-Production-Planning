@@ -15,6 +15,7 @@ miner = Machine("矿脉", multiplier=1.0)
 well = Machine("抽水机", multiplier=1.0)
 oil_well = Machine("原油站", multiplier=1.0)
 electron_receiver = Machine("射线接收站", multiplier=1.0)
+gas_collector = Machine("轨道采集器", multiplier=1.0)
 
 # smelting
 stove_low = Machine("初级熔炉", multiplier=1.0)
@@ -59,5 +60,6 @@ MACHINES = {
     "高级化工厂": chem_high,
     "研究站": research_station,
     "黑雾研究站": research_station_ultra,
-    "射线接收站": electron_receiver
+    "射线接收站": electron_receiver,
+    "轨道采集器": gas_collector
 }

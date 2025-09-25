@@ -1,5 +1,6 @@
 # items.py
 from machine import MACHINES, Machine
+from recipe import RECIPE, SELECTED_RECIPE
 
 class Item:
     def __init__(self, name, base_rate, machine_type, recipe=None):
@@ -7,8 +8,15 @@ class Item:
         self.base_rate = base_rate
         self.machine_type = machine_type
         self.actual_rate = self.base_rate * MACHINES[self.machine_type].multiplier
-        self.recipe = recipe or {}
+        self.recipe = self._load_recipe()
         self.demand = 0
+
+    def _load_recipe(self):
+        if self.name not in RECIPE:
+            return {}
+        options = RECIPE[self.name]
+        idx = SELECTED_RECIPE.get(self.name, 0)
+        return options[idx]
     
     def machine_num(self):
         return self.demand / self.actual_rate if self.actual_rate > 0 else 0
@@ -22,23 +30,37 @@ class Item:
 # define items
 
 # raw materials
+## 普通矿石
 iron_ore = Item("铁矿", base_rate=60, machine_type="矿脉")
 copper_ore = Item("铜矿", base_rate=60, machine_type="矿脉")
 stone_ore = Item("石矿", base_rate=60, machine_type="矿脉")
 coal_ore = Item("煤矿", base_rate=60, machine_type="矿脉")
 sil_ore = Item("硅矿", base_rate=60, machine_type="矿脉")
 tit_ore = Item ("钛矿", base_rate=60, machine_type="矿脉")
+## 液体/气体
 water = Item("水", base_rate=50, machine_type="抽水机")
 oil_ore = Item("原油", base_rate=5.0*60, machine_type="原油站") # 真实的rate取决于矿脉
-h = Item("氢", base_rate=30, machine_type="射线接收站")
+h_1_1 = Item("氢-轨道采集器-气巨", base_rate=0.90*60, machine_type="轨道采集器")
+h_1_2 = Item("氢-轨道采集器-冰巨", base_rate=0.30*60, machine_type="轨道采集器")
+hh_1 = Item("重氢-轨道采集器", base_rate=0.30*60, machine_type="轨道采集器")
+## 珍奇矿石
+diamond_ore = Item("金伯利矿石", base_rate=60, machine_type="矿脉")
+tran_sil_ore = Item("分形硅石", base_rate=60, machine_type="矿脉")
+lightstone_ore = Item("光栅石", base_rate=60, machine_type="矿脉")
+bamboo = Item("刺笋结晶", base_rate=60, machine_type="矿脉")
+mag_ore = Item("单极磁石", base_rate=40, machine_type="矿脉")
+ice_1 = Item("可燃冰-矿机", base_rate=60, machine_type="矿脉")
+ice_2 = Item("可燃冰-轨道采集器", base_rate=0.64*60, machine_type="轨道采集器")
+
 
 # basic materials
-iron = Item("铁块", base_rate=60, machine_type="高级熔炉", recipe={"铁矿": 1})
-mag_circle = Item("磁铁", base_rate=40, machine_type="高级熔炉", recipe={"铁矿": 1})
-cupper = Item("铜块", base_rate=60, machine_type="高级熔炉", recipe={"铜矿": 1})
+iron = Item("铁块", base_rate=60, machine_type="高级熔炉")
+mag_circle = Item("磁铁", base_rate=40, machine_type="高级熔炉")
+copper = Item("铜块", base_rate=60, machine_type="高级熔炉")
+stone_material = Item("石材", base_rate=60, machine_type="高级熔炉")
 
 # basic products
-wire_circle = Item("线圈", base_rate=120, machine_type="mk2制造台", recipe={"铜块": 1, "磁铁": 2})
+wire_circle = Item("线圈", base_rate=120, machine_type="mk2制造台")
 
 # dictionary for items
 ITEMS = {
@@ -50,20 +72,22 @@ ITEMS = {
     "钛矿": tit_ore,
     "水": water,
     "原油": oil_ore,
-    "氢": h,
-    # "重氢": hh,
+    "氢-轨道采集器-气巨 ": h_1_1,
+    "氢-轨道采集器-冰巨": h_1_2,
+    "重氢-轨道采集器": hh_1,
     # "反物质": h-h,
     # "核心素": hgold,
     # "临界光子": light,
-    # "金伯利矿": diamond_ore,
-    # "分形硅矿": tran_sil_ore,
-    # "光栅矿": lightstone_ore,
-    # "刺笋": bamboo,
-    # "磁石矿": mag_ore,
-    # "可燃冰": ice,
+    "金伯利矿石": diamond_ore,
+    "分形硅石": tran_sil_ore,
+    "光栅石": lightstone_ore,
+    "刺笋结晶": bamboo,
+    "单极磁石": mag_ore,
+    "可燃冰-矿机": ice_1,
+    "可燃冰-轨道采集器": ice_2,
     "铁块": iron,
-    "铜块": cupper,
-    # "石砖": stone_material,
+    "铜块": copper,
+    "石材": stone_material,
     # "石墨": pencil,
     # "硅块": sil,
     # "钛块": tit,
