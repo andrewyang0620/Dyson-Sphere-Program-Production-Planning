@@ -59,6 +59,7 @@ MACHINES = {
     "初级化工厂": chem_low,
     "高级化工厂": chem_high,
     "研究站": research_station,
+    "黑雾研究站" : research_station_ultra,
     "黑雾研究站": research_station_ultra,
     "射线接收站": electron_receiver,
     "轨道采集器": gas_collector

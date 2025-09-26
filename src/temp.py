@@ -3,7 +3,7 @@ eff0 = 0.75
 eff1 = 1.0
 eff2 = 1.5
 eff3 = 3.0
-
+n = 120
 def creation_rate(product_name, machine_name, product_per_min, machine_per_min, efficiency):
     machine_actual = machine_per_min * efficiency
     machine_needed = product_per_min / machine_actual
@@ -12,31 +12,31 @@ def creation_rate(product_name, machine_name, product_per_min, machine_per_min, 
 
 # 终产物
 print("\n==========终产物需求==========")
-creation_rate("绿糖", "研究站", 60, 5, eff1)
+creation_rate("绿糖", "研究站", n, 5, eff3)
 
 # 1级产物
 print("\n==========1级产物需求==========")
-creation_rate("蓝色芯片", "mk3制造台", 30, 10, eff2)
-creation_rate("绿豆", "mk3制造台", 30, 10, eff2)
+creation_rate("蓝色芯片", "黑雾制造台", n*0.5, 10, eff3)
+creation_rate("绿豆", "黑雾制造台", n*0.5, 10, eff3)
 
 # 2级产物
 print("\n==========2级产物需求==========")
-creation_rate("黄色芯片", "mk3制造台", 60, 20, eff2) # 2.1
-creation_rate("过滤玻璃" , "黑雾制造台", 60, 5, eff3) # 2.2
-creation_rate("金刚石", "mk3制造台", 120, 80, eff2) # 2.3 # ENDS
-creation_rate("绿管子", "粒子对撞机", 30, 7.5, eff1) # 2.4
+creation_rate("黄色芯片", "黑雾制造台", n, 20, eff3) # 2.1
+creation_rate("过滤玻璃" , "黑雾制造台", n, 5, eff3) # 2.2
+creation_rate("金刚石", "mk3制造台", 2*n, 80, eff2) # 2.3 # ENDS
+creation_rate("绿管子", "粒子对撞机", 0.5*n, 7.5, eff1) # 2.4
 
 # 3级产物
 print("\n==========3级产物需求==========")
 # for 2.1
-creation_rate("电路板", "mk2制造台", 120, 120, eff1) #3.1
-creation_rate("微晶原件", "mk2制造台", 120, 30, eff1) # 3.2
+creation_rate("电路板", "mk2制造台", 2*n, 120, eff1) #3.1
+creation_rate("微晶原件", "mk2制造台", 2*n, 30, eff1) # 3.2
 # for 2.2
-creation_rate("卡西米尔晶体", "mk2制造台", 60, 15, eff1) # 3.3
-creation_rate("钢化玻璃", "mk2制造台", 120, 24, eff1) # 3.4
+creation_rate("卡西米尔晶体", "mk1制造台", n, 15, eff1) # 3.3
+creation_rate("钢化玻璃", "mk2制造台", 2*n, 24, eff1) # 3.4
 # for 2.4
-creation_rate("紫管子", "mk2制造台", 60, 15, eff1) # 3.5
-creation_rate("铁块", "高级熔炉", 60, 60, 2) # 3.6 # ENDS
+creation_rate("紫管子", "黑雾制造台", n, 15, eff3) # 3.5
+creation_rate("铁块", "高级熔炉", n, 60, 2) # 3.6 # ENDS
 #重氢直接采集
 
 # 4级产物
