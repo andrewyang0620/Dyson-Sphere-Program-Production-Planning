@@ -6,7 +6,7 @@ def reset_all(items: dict):
         item.reset()
 
 def propagate(item: Item, amount: float, items: dict):
-    """全局累计，总机器数/资源用它"""
+    # 累计需求
     item.demand += amount
     if not item.recipe:
         return
@@ -15,8 +15,7 @@ def propagate(item: Item, amount: float, items: dict):
         propagate(child_item, amount * qty, items)
 
 def print_tree_local(item: Item, flow: float, indent=0, items: dict = ITEMS):
-    """逐层展示局部需求：这里不用 item.demand，而用 flow"""
-    # 用 flow 来算本节点需要的机器数（该分支角度）
+    # 分支需求
     machines_local = flow / item.actual_rate if item.actual_rate > 0 else 0.0
     print("  " * indent + f"- {item.name}: {flow}/min   {item.machine_type}: {machines_local:.1f}")
 

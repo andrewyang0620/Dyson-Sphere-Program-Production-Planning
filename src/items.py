@@ -1,14 +1,16 @@
 # items.py
+from requests import options
 from machine import MACHINES, Machine
 from recipe import RECIPE, SELECTED_RECIPE
 
 class Item:
-    def __init__(self, name, base_rate, machine_type, recipe=None):
+    def __init__(self, name, base_rate = None, machine_type = None):
         self.name = name
-        self.base_rate = base_rate
-        self.machine_type = machine_type
+        recipe_data = self._load_recipe()
+        self.recipe= recipe_data.get("inputs", {})
+        self.base_rate = base_rate or recipe_data.get("base_rate", 0)
+        self.machine_type = machine_type or recipe_data.get("machine_type", "未知设备")
         self.actual_rate = self.base_rate * MACHINES[self.machine_type].multiplier
-        self.recipe = self._load_recipe()
         self.demand = 0
 
     def _load_recipe(self):
@@ -56,46 +58,46 @@ organic = Item("有机晶体", base_rate=60, machine_type="矿脉")
 
 
 # basic materials
-iron = Item("铁块", base_rate=60, machine_type="高级熔炉")
-mag_circle = Item("磁铁", base_rate=40, machine_type="高级熔炉")
-copper = Item("铜块", base_rate=60, machine_type="高级熔炉")
-stone_material = Item("石材", base_rate=60, machine_type="高级熔炉")
-pencil = Item("石墨", base_rate=30, machine_type="mk2制造台")
-sil = Item("硅块", base_rate=30, machine_type="高级熔炉")
-tit = Item("钛块", base_rate=30, machine_type="高级熔炉")
-oil_gas = Item("精炼油", base_rate=30, machine_type="精炼厂")
-glass = Item("玻璃", base_rate=30, machine_type="高级熔炉")
-diamond = Item("钻石", base_rate=80, machine_type="高级熔炉")
-tran_sil = Item("晶格硅", base_rate=30, machine_type="高级熔炉")
-plastic = Item("塑料", base_rate=20, machine_type="高级化工厂")
-wire_circle = Item("线圈", base_rate=120, machine_type="mk2制造台")
-net = Item("石墨烯", base_rate=60, machine_type="高级化工厂")
-electron_board = Item("电路板", base_rate=120, machine_type="mk2制造台")
-motor = Item("马达", base_rate=30, machine_type="mk2制造台")
-electronic = Item("微晶原件", base_rate=30, machine_type="mk2制造台")
-tit_crystal = Item("钛晶石", base_rate=15, machine_type="mk2制造台")
-net_tube = Item("碳纳米管", base_rate=30, machine_type="高级化工厂")
-gear = Item("齿轮", base_rate=60, machine_type="mk2制造台")
-green_motor = Item("绿马达", base_rate=30, machine_type="mk2制造台")
-h_h = Item("反物质", base_rate=60, machine_type="对撞机")
+h_h = Item("反物质")
+iron = Item("铁块")
+mag_circle = Item("磁铁")
+copper = Item("铜块")
+stone_material = Item("石材")
+pencil = Item("石墨")
+sil = Item("硅块")
+tit = Item("钛块")
+oil_gas = Item("精炼油")
+glass = Item("玻璃")
+diamond = Item("钻石")
+tran_sil = Item("晶格硅")
+plastic = Item("塑料")
+wire_circle = Item("线圈")
+net = Item("石墨烯")
+electron_board = Item("电路板")
+motor = Item("马达")
+electronic = Item("微晶原件")
+tit_crystal = Item("钛晶石")
+net_tube = Item("碳纳米管")
+gear = Item("齿轮")
+green_motor = Item("绿马达")
 
 # high level materials
-green_tube = Item("绿管", base_rate=7.5, machine_type="mk2制造台")
-gold_cpu = Item("金cpu", base_rate=20, machine_type="mk2制造台")
-purple_crystal = Item("卡西米尔晶体", base_rate=15, machine_type="mk2制造台")
-cpu_tube = Item("粒子宽带", base_rate=7.5, machine_type="mk2制造台")
-tit_glass = Item("钛玻璃", base_rate=24, machine_type="mk2制造台")
-cpu_glass = Item("位面过滤器", base_rate=5, machine_type="mk2制造台")
-blue_cpu = Item("蓝cpu", base_rate=10, machine_type="mk2制造台")
-purple_tube = Item("紫管", base_rate=15, machine_type="mk2制造台")
-green_mirror = Item("引力透镜", base_rate=10, machine_type="mk2制造台")
+green_tube = Item("绿管")
+gold_cpu = Item("金cpu")
+purple_crystal = Item("卡西米尔晶体")
+cpu_tube = Item("粒子宽带", base_rate=7.5)
+tit_glass = Item("钛玻璃")
+cpu_glass = Item("位面过滤器")
+blue_cpu = Item("蓝cpu")
+purple_tube = Item("紫管")
+green_mirror = Item("引力透镜")
 # sugars
-blue_matrix = Item("蓝糖", base_rate=20, machine_type="黑雾研究站")
-red_matrix = Item("红糖", base_rate=10, machine_type="黑雾研究站")
-yellow_matrix = Item("黄糖", base_rate=7.5, machine_type="黑雾研究站")
-purple_matrix = Item("紫糖", base_rate=6, machine_type="黑雾研究站")
-green_matrix = Item("绿糖", base_rate=5, machine_type="黑雾研究站")
-white_matrix = Item("白糖", base_rate=4, machine_type="黑雾研究站")
+blue_matrix = Item("蓝糖")
+red_matrix = Item("红糖")
+yellow_matrix = Item("黄糖")
+purple_matrix = Item("紫糖")
+green_matrix = Item("绿糖")
+white_matrix = Item("白糖")
 # dictionary for items
 ITEMS = {
     "铁矿": iron_ore,
