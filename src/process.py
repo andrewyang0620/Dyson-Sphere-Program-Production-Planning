@@ -17,7 +17,11 @@ def propagate(item: Item, amount: float, items: dict):
 def print_tree_local(item: Item, flow: float, indent=0, items: dict = ITEMS):
     # 分支需求
     machines_local = flow / item.actual_rate if item.actual_rate > 0 else 0.0
-    print("  " * indent + f"- {item.name}: {flow}/min   {item.machine_type}: {machines_local:.1f}")
+    if machines_local.is_integer():
+        machines_display = int(machines_local)
+    else:
+        machines_display = round(machines_local, 1)
+    print("  " * indent + f"- {item.name}: {flow}/min   {item.machine_type}: {machines_display}")
 
     if not item.recipe:
         return
