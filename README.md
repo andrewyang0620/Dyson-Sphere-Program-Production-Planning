@@ -1,2 +1,5 @@
-# Dyson-Sphere-Program-Production-Planning
-Inicialize repo for the project
+# Dyson Sphere Program - Production Planner
+*A scalable production line culculator for **Dyson Sphere Program** players.*
+
+## Overview
+This part is not yet modified.

@@ -14,4 +14,7 @@ if __name__ == "__main__":
 print("\n=== Final Demands ===")
 for name, item in ITEMS.items():
     if item.demand > 0:
-        print(f"{name}: {item.demand:.1f}/min, Machines: {item.machine_num():.1f}")
+        if(item.machine_num()).is_integer():
+            print(f"{name}: {item.demand:.1f}/min, {item.machine_type}: {int(item.machine_num())}")
+        else:
+            print(f"{name}: {item.demand:.1f}/min, {item.machine_type}: {item.machine_num():.1f}")

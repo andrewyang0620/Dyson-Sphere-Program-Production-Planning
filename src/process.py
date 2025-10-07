@@ -5,7 +5,7 @@ def reset_all(items: dict):
     for item in items.values():
         item.reset()
 
-def propagate(item: Item, amount: float, items: dict):
+def propagate(item: Item, amount: float, items: dict = ITEMS):
     # 累计需求
     item.demand += amount
     if not item.recipe:

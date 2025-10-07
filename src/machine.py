@@ -41,7 +41,6 @@ chem_high = Machine("高级化工厂", multiplier=2.0)
 research_station = Machine("研究站", multiplier=1.0)
 research_station_ultra = Machine("黑雾研究站", multiplier=3.0)
 
-# the dictionary of machine
 MACHINES = {
     "矿脉": miner,
     "初级熔炉": stove_low,

@@ -56,6 +56,8 @@ ice_1 = Item("可燃冰-矿机", base_rate=60, machine_type="矿脉")
 ice_2 = Item("可燃冰-轨道采集器", base_rate=0.64*60, machine_type="轨道采集器")
 organic = Item("有机晶体", base_rate=60, machine_type="矿脉")
 
+# 黑雾材料
+hgold = Item("核心素", base_rate=1, machine_type="矿脉")
 
 # basic materials
 h_h = Item("反物质")
@@ -98,6 +100,7 @@ yellow_matrix = Item("黄糖")
 purple_matrix = Item("紫糖")
 green_matrix = Item("绿糖")
 white_matrix = Item("白糖")
+
 # dictionary for items
 ITEMS = {
     "铁矿": iron_ore,
@@ -112,7 +115,7 @@ ITEMS = {
     "氢-轨道采集器-冰巨": h_1_2,
     "重氢-轨道采集器": hh_1,
     "反物质": h_h,
-    # "核心素": hgold,
+    "核心素": hgold,
     "临界光子": light,
     "金伯利矿石": diamond_ore,
     "分形硅石": tran_sil_ore,
